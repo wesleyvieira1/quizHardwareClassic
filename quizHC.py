@@ -1,6 +1,3 @@
-from whaaaaat import style_from_dict, Token, prompt, print_json, default_style
-
-
 def quizHardwareClassico(perguntas_hardware):
 
 
@@ -33,6 +30,26 @@ def main():
             "pergunta": "Que tipo de conexão é comum para conectar periféricos como teclado e mouse?",
             "opcoes": ["a) USB", "b) HDMI", "c) Ethernet", "d) VGA"],
             "resposta": "a"
+        },
+        {
+            "pergunta": "Qual componente do computador é responsável por executar instruções e realizar cálculos?",
+            "opcoes": ["a) Monitor","b) Teclado","c) Mouse","d) CPU (Unidade Central de Processamento)"],
+            "resposta":"d"
+        },
+        {
+            "pergunta":"Qual é a função principal da memória RAM?",
+            "opcoes": ["a) Armazenar permanentemente os dados","b) Controlar a temperatura interna do computador","c) Fornecer energia ao sistema","d) Armazenar temporariamente dados e programas em execução"],
+            "reposta": "d"
+        },
+        {
+            "pergunta":"Qual é a função da placa-mãe em um computador?",
+            "opcoes":["a) Fornecer energia elétrica","b) Armazenar programas e dados permanentemente","c) Conectar e comunicar todos os componentes de hardware","d) Controlar a temperatura interna"],
+            "reposta": "c"
+        },
+        {
+            "pergunta":"Qual é o dispositivo de saída que exibe informações visuais na tela?",
+            "opcoes":["a) Mouse","b) Teclado","c) Monitor","d) Impressora"],
+            "reposta":"c"
         }
     ]
 
