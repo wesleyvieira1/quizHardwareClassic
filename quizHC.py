@@ -1,5 +1,9 @@
+from whaaaaat import style_from_dict, Token, prompt, print_json, default_style
+
+
 def quizHardwareClassico(perguntas_hardware):
-    
+
+
     nome_equipe = str(input("Digite um nome para equipe: "))
     print(f"\n\nOlá {nome_equipe} vamos iniciar o quiz!! \n\n")
     pontuacao = 0
