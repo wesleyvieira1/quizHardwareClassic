@@ -6,8 +6,6 @@ import os
 import sys
 
 def quizHardwareClassico(perguntas_hardware):
-
-
     nome_equipe = str(input("Digite um nome para equipe: "))
     print(f"\n\nOlá {nome_equipe} vamos iniciar o quiz!! \n\n")
     pontuacao = 0
@@ -32,7 +30,7 @@ ranking = {"Pedro":9999}
 def main():
 
     menu = inquirer.select(
-        message="\ \ \Quiz de Hardware/ / /",
+        message= "\n\ \Quiz de Hardware/ / \n",
         choices=[
             "Jogar",
             "Ranking",
