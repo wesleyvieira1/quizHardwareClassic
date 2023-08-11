@@ -5,25 +5,6 @@ import time
 import os
 import sys
 
-def quizHardwareClassico(perguntas_hardware):
-    nome_equipe = str(input("Digite um nome para equipe: "))
-    print(f"\n\nOlá {nome_equipe} vamos iniciar o quiz!! \n\n")
-    pontuacao = 0
-    for dic in perguntas_hardware:
-        print(dic["pergunta"])
-        for opcao in dic["opcoes"]:
-            print(opcao)
-
-        resposta = input("Digite sua respota: ").lower()
-        if resposta == dic["resposta"]:
-            pontuacao+=100
-            print("\nResposta Certa\n")
-        else:
-            print("\nResposta Errada\n")
-    
-    print("Sua pontuação foi: ", pontuacao)
-
-
 global ranking
 ranking = {"Pedro":9999}
 
