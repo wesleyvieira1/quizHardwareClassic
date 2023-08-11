@@ -1,3 +1,8 @@
+from InquirerPy import prompt, inquirer
+from InquirerPy.separator import Separator
+from pprint import pprint
+import time
+
 def quizHardwareClassico(perguntas_hardware):
 
 
@@ -19,40 +24,91 @@ def quizHardwareClassico(perguntas_hardware):
     print("Sua pontuação foi: ", pontuacao)
 
 
+global ranking
+ranking = {"Pedro":9999}
+
 def main():
+
+    menu = inquirer.select(
+        message="\ \ \Quiz de Hardware/ / /",
+        choices=[
+            "Jogar",
+            "Ranking",
+            "Créditos",
+            Separator(),
+            "Sair"
+        ]
+    )
+
     perguntas_hardware = [
         {
-            "pergunta": "Qual componente do computador é responsável por armazenar dados permanentemente?",
-            "opcoes": ["a) CPU", "b) RAM", "c) Disco rígido", "d) Placa de vídeo"],
-            "resposta": "c"
+            "type":"rawlist",       
+            "message": "Qual componente do computador é responsável por armazenar dados permanentemente?",
+            "choices": ["a) CPU", "b) RAM", "c) Disco rígido", "d) Placa de vídeo"]
         },
         {
-            "pergunta": "Que tipo de conexão é comum para conectar periféricos como teclado e mouse?",
-            "opcoes": ["a) USB", "b) HDMI", "c) Ethernet", "d) VGA"],
-            "resposta": "a"
+            "type":"rawlist",       
+            "message": "Que tipo de conexão é comum para conectar periféricos como teclado e mouse?",
+            "choices": ["a) USB", "b) HDMI", "c) Ethernet", "d) VGA"]
         },
         {
-            "pergunta": "Qual componente do computador é responsável por executar instruções e realizar cálculos?",
-            "opcoes": ["a) Monitor","b) Teclado","c) Mouse","d) CPU (Unidade Central de Processamento)"],
-            "resposta":"d"
+            "type":"rawlist",   
+            "message": "Qual componente do computador é responsável por executar instruções e realizar cálculos?",
+            "choices": ["a) Monitor","b) Teclado","c) Mouse","d) CPU"]
         },
         {
-            "pergunta":"Qual é a função principal da memória RAM?",
-            "opcoes": ["a) Armazenar permanentemente os dados","b) Controlar a temperatura interna do computador","c) Fornecer energia ao sistema","d) Armazenar temporariamente dados e programas em execução"],
-            "reposta": "d"
+            "type":"rawlist",   
+            "message":"Qual é a função principal da memória RAM?",
+            "choices": ["a) Armazenar permanentemente os dados","b) Controlar a temperatura interna do computador","c) Fornecer energia ao sistema","d) Armazenar temporariamente dados e programas em execução"]
         },
         {
-            "pergunta":"Qual é a função da placa-mãe em um computador?",
-            "opcoes":["a) Fornecer energia elétrica","b) Armazenar programas e dados permanentemente","c) Conectar e comunicar todos os componentes de hardware","d) Controlar a temperatura interna"],
-            "reposta": "c"
+            "type":"rawlist",   
+            "message":"Qual é a função da placa-mãe em um computador?",
+            "choices":["a) Fornecer energia elétrica","b) Armazenar programas e dados permanentemente","c) Conectar e comunicar todos os componentes de hardware","d) Controlar a temperatura interna"]
         },
         {
-            "pergunta":"Qual é o dispositivo de saída que exibe informações visuais na tela?",
-            "opcoes":["a) Mouse","b) Teclado","c) Monitor","d) Impressora"],
-            "reposta":"c"
+            "type":"rawlist",  
+            "message":"Qual é o dispositivo de saída que exibe informações visuais na tela?",
+            "choices":["a) Mouse","b) Teclado","c) Monitor","d) Impressora"]
+        },
+        {
+            "type":"input",
+            "message":"Digite seu nome:",
+            "name":"name"
         }
     ]
 
-    quizHardwareClassico(perguntas_hardware)
+    def answers(result, index, correct):
+        return 100 if result[index] == correct else 0
+
+    action = menu.execute()
+    if action:
+        match action:
+            case "Jogar":
+                result = prompt(perguntas_hardware)
+
+                points = 0
+                points += answers(result, 0, "c) Disco rígido")
+                points += answers(result, 1, "a) USB")
+                points += answers(result, 2, "d) CPU")
+                points += answers(result, 3, "d) Armazenar temporariamente dados e programas em execução")
+                points += answers(result, 4, "c) Conectar e comunicar todos os componentes de hardware")
+                points += answers(result, 5, "c) Monitor")
+                ranking[result['name']] = points
+
+                print(f"Você fez {points} pontos!")
+                time.sleep(5)
+
+            case "Ranking":
+                print(f"{'Nome':<8} {'Pontos':<15}")
+                for key, value in ranking.items():
+                    print(f"{key:<8} {value:<15}")
+            case "Créditos":
+                pass
+            case "Sair":
+                exit()
+
+
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
