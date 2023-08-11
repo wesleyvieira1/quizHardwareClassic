@@ -2,6 +2,8 @@ from InquirerPy import prompt, inquirer
 from InquirerPy.separator import Separator
 from pprint import pprint
 import time
+import os
+import sys
 
 def quizHardwareClassico(perguntas_hardware):
 
@@ -81,10 +83,18 @@ def main():
     def answers(result, index, correct):
         return 100 if result[index] == correct else 0
 
+    def typeprint(string):
+        for char in string:
+            time.sleep(0.1)
+            sys.stdout.write(char)
+            sys.stdout.flush()
+
+
     action = menu.execute()
     if action:
         match action:
             case "Jogar":
+                os.system("cls")
                 result = prompt(perguntas_hardware)
 
                 points = 0
@@ -104,7 +114,10 @@ def main():
                 for key, value in ranking.items():
                     print(f"{key:<8} {value:<15}")
             case "Créditos":
-                pass
+                typeprint("Desenvolvedores: Wesley Vieira e Pedro Lucas Simões\n")
+                typeprint("Designers: Pedro Lucas Simões, Wesley Vieira e Carlos Vitor\n")
+                typeprint("Apoio moral: Ryan Ribeiro e Humberto Nunes\n")
+                typeprint("Logística e Transporte: André Maxwell\n")
             case "Sair":
                 exit()
 
