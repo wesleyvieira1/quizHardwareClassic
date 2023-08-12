@@ -63,7 +63,6 @@ def main():
     def sum_answers(result, correct):
         points = 0
         for i in range(0, len(result)-1):
-            print(i)
             points += check_answer(result, i, correct[i])
         return points
 
