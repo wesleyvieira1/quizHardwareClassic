@@ -1,12 +1,10 @@
 from InquirerPy import prompt, inquirer
 from InquirerPy.separator import Separator
-from pprint import pprint
 import time
 import os
 import sys
 
 def quizHardwareClassico(perguntas_hardware):
-
 
     nome_equipe = str(input("Digite um nome para equipe: "))
     print(f"\n\nOlá {nome_equipe} vamos iniciar o quiz!! \n\n")
@@ -25,12 +23,10 @@ def quizHardwareClassico(perguntas_hardware):
     
     print("Sua pontuação foi: ", pontuacao)
 
-
 global ranking
-ranking = {"Pedro":9999}
+ranking = {}
 
 def main():
-
     menu = inquirer.select(
         message="\ \ \Quiz de Hardware/ / /",
         choices=[
@@ -80,8 +76,15 @@ def main():
         }
     ]
 
-    def answers(result, index, correct):
-        return 100 if result[index] == correct else 0
+    def check_answer(result, index, correct):
+        return 100 if result[index] == perguntas_hardware[index]["choices"][correct] else 0
+
+    def sum_answers(result, correct):
+        points = 0
+        for i in range(0, len(result)-1):
+            print(i)
+            points += check_answer(result, i, correct[i])
+        return points
 
     def typeprint(string):
         for char in string:
@@ -89,6 +92,7 @@ def main():
             sys.stdout.write(char)
             sys.stdout.flush()
 
+    answers = [2, 0, 3, 3, 2, 2]
 
     action = menu.execute()
     if action:
@@ -97,13 +101,7 @@ def main():
                 os.system("cls")
                 result = prompt(perguntas_hardware)
 
-                points = 0
-                points += answers(result, 0, "c) Disco rígido")
-                points += answers(result, 1, "a) USB")
-                points += answers(result, 2, "d) CPU")
-                points += answers(result, 3, "d) Armazenar temporariamente dados e programas em execução")
-                points += answers(result, 4, "c) Conectar e comunicar todos os componentes de hardware")
-                points += answers(result, 5, "c) Monitor")
+                points = sum_answers(result, answers)
                 ranking[result['name']] = points
 
                 print(f"Você fez {points} pontos!")
